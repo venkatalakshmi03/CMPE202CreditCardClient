@@ -46,6 +46,7 @@ public class JsonCreditCardFileReader extends CreditCardFileReader {
     }
 
     boolean hasNext() {
+        if (reader == null) return false;
         try {
             return reader.hasNext();
         } catch (IOException e) {

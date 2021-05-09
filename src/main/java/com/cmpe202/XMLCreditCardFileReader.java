@@ -14,7 +14,6 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
             try {
                 reader = xmlInputFactory.createXMLEventReader(fileReader);
             } catch (XMLStreamException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -22,6 +21,7 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
     @Override
     Record next() {
         try {
+            boolean hasValue = false;
             while (reader.hasNext()) {
                 XMLEvent event = reader.nextEvent();
                 RecordBuilder r = new RecordBuilder();
@@ -34,6 +34,7 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
                                 case "CardNumber":
                                     event = reader.nextEvent();
                                     r.setCardNumber(event.asCharacters().getData());
+                                    hasValue = true;
                                     break;
                                 case "ExpirationDate":
                                     event = reader.nextEvent();
@@ -44,6 +45,8 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
                                     r.setNameOfCardholder(event.asCharacters().getData());
                                     return r.createRecord();
                             }
+                        } else if (event.isEndElement() && event.asEndElement().getName().getLocalPart().equals("row")) {
+                            if (hasValue) return r.createRecord();
                         }
                     }
                 }
@@ -57,6 +60,7 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
 
     @Override
     boolean hasNext() {
+        if (reader == null) return false;
         return reader.hasNext();
     }
 

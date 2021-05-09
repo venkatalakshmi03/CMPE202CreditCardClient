@@ -13,6 +13,7 @@ public class CSVCreditCardFileWriter extends CreditCardFileWriter {
 
     @Override
     public void write(List<CreditCard> cards) {
+        if (writer == null) return;
         String[] header = new String[]{"CardNumber,CardType,Error"};
         writer.writeNext(header);
         for(CreditCard c: cards) {

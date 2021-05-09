@@ -1,5 +1,6 @@
 package com.cmpe202;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +11,9 @@ abstract class CreditCardFileWriter {
         this.fileName = fileName;
         try {
             fw = new FileWriter(fileName);
+        } catch(FileNotFoundException e) {
+
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

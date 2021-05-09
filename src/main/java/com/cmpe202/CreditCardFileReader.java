@@ -9,7 +9,6 @@ abstract class CreditCardFileReader {
         try {
             fileReader = new FileReader(fileName);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 

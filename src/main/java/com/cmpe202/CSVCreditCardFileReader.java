@@ -18,9 +18,7 @@ public class CSVCreditCardFileReader extends CreditCardFileReader {
                 try {
                     reader.readNext();
                 } catch (IOException e) {
-                    e.printStackTrace();
                 } catch (CsvValidationException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -44,6 +42,7 @@ public class CSVCreditCardFileReader extends CreditCardFileReader {
 
     @Override
     boolean hasNext() {
+        if (reader == null) return false;
         try {
             return reader.peek() != null;
         } catch (IOException e) {
