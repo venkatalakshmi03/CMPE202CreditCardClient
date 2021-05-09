@@ -10,10 +10,12 @@ public class XMLCreditCardFileReader extends CreditCardFileReader {
     public XMLCreditCardFileReader(String fileName) {
         super(fileName);
         xmlInputFactory = XMLInputFactory.newInstance();
-        try {
-            reader = xmlInputFactory.createXMLEventReader(fileReader);
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
+        if (fileReader != null) {
+            try {
+                reader = xmlInputFactory.createXMLEventReader(fileReader);
+            } catch (XMLStreamException e) {
+                e.printStackTrace();
+            }
         }
     }
 

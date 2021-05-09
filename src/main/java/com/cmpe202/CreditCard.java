@@ -3,20 +3,10 @@ package com.cmpe202;
 public class CreditCard {
 
     public CreditCard(String cardNumber, String expirationDate, String nameOfCardholder) {
-        this(CreditCardType.INVALID, cardNumber, expirationDate, nameOfCardholder);
-    }
-
-    public CreditCard(CreditCardType cardType, String cardNumber, String expirationDate, String nameOfCardholder) {
-        this.cardType = cardType;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.nameOfCardholder = nameOfCardholder;
     }
-
-    private CreditCardType cardType;
-    private String cardNumber;
-    private String expirationDate;
-    private String nameOfCardholder;
 
     public CreditCardType getCardType() {
         return cardType;
@@ -49,4 +39,13 @@ public class CreditCard {
     public void setNameOfCardholder(String nameOfCardholder) {
         this.nameOfCardholder = nameOfCardholder;
     }
+
+    public boolean isValid() {
+        return true;
+    }
+
+    private CreditCardType cardType = CreditCardType.INVALID;
+    private String cardNumber;
+    private String expirationDate;
+    private String nameOfCardholder;
 }

@@ -8,8 +8,10 @@ import java.util.List;
 public class JsonCreditCardFileWriter extends CreditCardFileWriter {
     public JsonCreditCardFileWriter(String fileName) {
         super(fileName);
-        writer = new JsonWriter(fw);
-        writer.setIndent("\t");
+        if (fw != null) {
+            writer = new JsonWriter(fw);
+            writer.setIndent("\t");
+        }
     }
 
     @Override

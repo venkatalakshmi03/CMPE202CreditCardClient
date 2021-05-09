@@ -7,11 +7,13 @@ import java.io.IOException;
 public class JsonCreditCardFileReader extends CreditCardFileReader {
     public JsonCreditCardFileReader(String fileName) {
         super(fileName);
-        reader = new JsonReader(fileReader);
-        try {
-            reader.beginArray();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (fileReader != null) {
+            reader = new JsonReader(fileReader);
+            try {
+                reader.beginArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

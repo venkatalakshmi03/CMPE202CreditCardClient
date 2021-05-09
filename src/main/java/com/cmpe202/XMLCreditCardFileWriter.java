@@ -21,6 +21,7 @@ public class XMLCreditCardFileWriter extends CreditCardFileWriter {
         Characters newLine = eventFactory.createCharacters("\n");
         Characters tab = eventFactory.createCharacters("\t");
         XMLEventWriter writer = null;
+        if (fw == null) return;
         try {
             writer = factory.createXMLEventWriter(fw);
             XMLEvent event = eventFactory.createStartDocument();

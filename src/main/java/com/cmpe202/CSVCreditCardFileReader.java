@@ -11,15 +11,17 @@ public class CSVCreditCardFileReader extends CreditCardFileReader {
 
     public CSVCreditCardFileReader(String fileName) {
         super(fileName);
-        reader = new CSVReaderBuilder(fileReader).
-                withCSVParser(new CSVParserBuilder().withSeparator('\t').build()).build();
-        if (hasNext()) {
-            try {
-                reader.readNext();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (CsvValidationException e) {
-                e.printStackTrace();
+        if (fileReader != null) {
+            reader = new CSVReaderBuilder(fileReader).
+                    withCSVParser(new CSVParserBuilder().withSeparator('\t').build()).build();
+            if (hasNext()) {
+                try {
+                    reader.readNext();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (CsvValidationException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

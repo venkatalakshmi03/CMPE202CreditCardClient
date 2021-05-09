@@ -8,7 +8,7 @@ import java.util.List;
 public class CSVCreditCardFileWriter extends CreditCardFileWriter {
     public CSVCreditCardFileWriter(String fileName) {
         super(fileName);
-        writer = new CSVWriter(fw);
+        if (fw != null) writer = new CSVWriter(fw);
     }
 
     @Override
